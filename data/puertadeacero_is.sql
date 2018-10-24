@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-10-2018 a las 18:54:58
+-- Tiempo de generación: 24-10-2018 a las 18:35:14
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 7.0.13
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `puertadeacero_ing_soft`
+-- Base de datos: `puertadeacero_is`
 --
 
 -- --------------------------------------------------------
@@ -96,6 +96,15 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nombres`, `ape_paterno`, `ape_materno`, `telefono`, `correo`, `contrasena`, `tipo`) VALUES
+(1, 'Luis Alberto', 'Garcia', 'Rodriguez', '2233112233', 'luis@gmail.com', '$2y$10$ssbueLLkyrZgzBXnFSSTjuKtTQSR/PB6xCvfUcpAr7lKCdo7qr7ni', 'Administrador'),
+(2, 'Pepe', 'nares', 'nares', '333222', 'correo@correo.com', '$2y$10$eCoeO/ym05GZEPA1cDmsS.wKXrmyX5V2JnCshb5QPNy1fcVFWszyu', 'Administrador'),
+(3, 'Carlos', 'Lopez', 'Obrador', '33789456', 'carlos@gmail.com', '$2y$10$zHoKAKOBe7Zk4DHgnXJp.OkGtwXwY8Av8bx0DziWMhx6jmqIPNasu', 'Administrador');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -157,7 +166,7 @@ ALTER TABLE `proveedores`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Restricciones para tablas volcadas
 --
