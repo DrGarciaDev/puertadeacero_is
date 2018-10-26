@@ -25,6 +25,7 @@
   <?php if($_SESSION['tipo'] === "Administrador") { ?>
     <!-- AQUI SE PUEDEN INSERTAR FILAS DE LISTAS PARA AGREGAR MENÚS DEL TIPO ADMINISTRADOR-->
     <li><a href="ver_usuarios">Usuarios</a></li>
+    <li><a href="ver_proveedores">Proveedores</a></li>
   <?php } ?>
 </ul>
 <!--FINAL DEL BOTON QUE DESPLIEGA EL MENU-->
@@ -45,6 +46,7 @@
               O ELIMINAR USUARIOS Y PEDIDOS-->
           <?php if($_SESSION['tipo'] === "Administrador") { ?>
             <li><a href="ver_usuarios"><i class="material-icons left">search</i>Usuarios</a></li>
+            <li><a href="ver_proveedores"><i class="material-icons left">search</i>Proveedores</a></li>
           <?php } ?>
           <li><a href="salir"><i class="material-icons left">stop</i>Salir</a></li>
         </ul>
