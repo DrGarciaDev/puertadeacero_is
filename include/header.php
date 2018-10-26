@@ -26,6 +26,7 @@
     <!-- AQUI SE PUEDEN INSERTAR FILAS DE LISTAS PARA AGREGAR MENÚS DEL TIPO ADMINISTRADOR-->
     <li><a href="ver_usuarios">Usuarios</a></li>
     <li><a href="ver_proveedores">Proveedores</a></li>
+    <li><a href="ver_casas">Casas</a></li>
   <?php } ?>
 </ul>
 <!--FINAL DEL BOTON QUE DESPLIEGA EL MENU-->
@@ -47,6 +48,7 @@
           <?php if($_SESSION['tipo'] === "Administrador") { ?>
             <li><a href="ver_usuarios"><i class="material-icons left">search</i>Usuarios</a></li>
             <li><a href="ver_proveedores"><i class="material-icons left">search</i>Proveedores</a></li>
+            <li><a href="ver_casas"><i class="material-icons left">search</i>Casas</a></li>
           <?php } ?>
           <li><a href="salir"><i class="material-icons left">stop</i>Salir</a></li>
         </ul>
