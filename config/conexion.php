@@ -6,11 +6,12 @@ $config = parse_ini_file('config.ini');
 $enlace = mysqli_connect($config['host'],$config['username'],$config['password'],$config['dbname']); 
 
 //Si la conexión falla, aparece el error
-/*
+
 if($enlace === false) {
-echo 'Ha habido un error <br>'.mysqli_connect_error();
+	echo 'Ha habido un error <br>'.mysqli_connect_error();
 } else {
-echo 'Conectado a la base de datos';
+	mysqli_set_charset($enlace, "utf8");
+	//echo 'Conectado a la base de datos';
 }
-*/
+
 ?>
