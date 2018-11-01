@@ -12,21 +12,21 @@
 
         </div>
         <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
+          <h5 class="white-text">Repos y Proyectos</h5>
           <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
+            <li><a class="white-text" href="https://www.gitlab.com/kernelroots" target="_blank">Gitlab</a></li>
+            <li><a class="white-text" href="https://github.com/kernelroots" target="_blank">Github</a></li>
+            <li><a class="white-text" href="https://bitbucket.org/kernelroots/" target="_blank">Bitbucket</a></li>
+            <li><a class="white-text" href="http://webspruebas.hol.es/" target="_blank">Proyecto Siiau</a></li>
           </ul>
         </div>
         <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
+          <h5 class="white-text">Blogs</h5>
           <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
+            <li><a class="white-text" href="http://www.codigosdeprogra.com/" target="_blank">Codigosdeprogra</a></li>
+            <li><a class="white-text" href="https://eldocgarcia.blogspot.com/" target="_blank">El Doc García</a></li>
+            <li><a class="white-text" href="https://kernelroots.blogspot.com/" target="_blank">Kernel Roots</a></li>
+            <li><a class="white-text" href="https://www.facebook.com/codigosdeprogra/" target="_blank">FaceBook Codigos de Progra</a></li>
           </ul>
         </div>
       </div>

@@ -39,22 +39,21 @@
 			$adeudo_temporal = $row['adeudo'];
 
 			$total = $adeudo_temporal - $monto;
-			//echo "$total";
-		}
-
-		$sql_insert = "INSERT INTO pagos(fecha,monto,usuario_id,casa_id) VALUES('$fecha', $monto, ".$_SESSION['usuario'].", $casa);";
-		$sql_pago_monto = "UPDATE casas SET adeudo = $total WHERE id = ".$casa;
-		//DEVUELVE TRUE SI LA CONSULTA CON INSERT SE REALIZA CON EXITO
-		if (mysqli_query($enlace, $sql_insert) === TRUE && mysqli_query($enlace, $sql_pago_monto) === TRUE) {
-			echo ' 	<script>
-						alert("Pago registrado con éxito");
-						location.href="ver_pagos";
-					</script>';
-		}
-		else {
-			echo ' 	<script>
-						alert("Pago No registrado, intentalo nuevamente");
-					</script>';
+			
+			$sql_insert = "INSERT INTO pagos(fecha,monto,usuario_id,casa_id) VALUES('$fecha', $monto, ".$_SESSION['usuario'].", $casa);";
+			$sql_pago_monto = "UPDATE casas SET adeudo = $total WHERE id = ".$casa;
+			//DEVUELVE TRUE SI LA CONSULTA CON INSERT SE REALIZA CON EXITO
+			if (mysqli_query($enlace, $sql_insert) === TRUE && mysqli_query($enlace, $sql_pago_monto) === TRUE) {
+				echo ' 	<script>
+							alert("Pago registrado con éxito");
+							location.href="ver_pagos";
+						</script>';
+			}
+			else {
+				echo ' 	<script>
+							alert("Pago No registrado, intentalo nuevamente");
+						</script>';
+			}
 		}
 
    }//Fin del if SERVER

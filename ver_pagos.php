@@ -14,10 +14,30 @@
 		//###### FILTRO anti-XSS
 		$busqueda = htmlspecialchars( mysqli_real_escape_string($enlace, $_POST['Busqueda']) );
 
-		$sql = "SELECT * FROM pagos WHERE 
-	    folio LIKE '%".$busqueda."%' OR 
-	    fecha LIKE '%".$busqueda."%' OR  
-	    monto LIKE '%".$busqueda."%' ";	  
+		$sql = "SELECT 
+				pagos.folio,
+				pagos.fecha,
+				pagos.monto,
+				CONCAT(usuarios.nombres,' ',usuarios.ape_paterno,' ',usuarios.ape_materno) AS nombre,
+				casas.dueno,
+				casas.adeudo
+				FROM pagos
+				INNER JOIN usuarios 
+				ON usuarios.id = pagos.usuario_id
+				INNER JOIN casas
+				ON casas.id = pagos.casa_id 
+
+				WHERE pagos.folio LIKE '%".$busqueda."%' OR 
+			    pagos.fecha LIKE '%".$busqueda."%' OR  
+			    pagos.monto LIKE '%".$busqueda."%' OR
+			    usuarios.nombres LIKE '%".$busqueda."%' OR
+			    casas.dueno LIKE '%".$busqueda."%' OR
+			    casas.adeudo LIKE '%".$busqueda."%' 
+			    ORDER BY pagos.fecha DESC";	  
+		
+		if (!$enlace->query($sql)) {
+	        printf("Error: %s\n", $enlace->error);
+	    }
 		
 		$resultadoEsp = mysqli_query($enlace, $sql);
 		$count = mysqli_num_rows($resultadoEsp);
@@ -28,19 +48,6 @@
 //$resultado = mysqli_query($enlace, $query);
 ?>
     <div class="container z-depth-5">
-      <?php
-      if(isset($_SESSION['flash'])){
-        if($_SESSION['flash']=='CaE'){
-			echo '<div class="card red lighten-5 center">
-					<div class="card-content red-text">
-    					<p>Casa Eliminada Correctamente...</p>
-  					</div>
-				</div>';
-		}
-        unset($_SESSION['flash']);
-      }
-      ?>
-
 
 		<div class="row center">
 	        <div class="col s12">
@@ -49,7 +56,8 @@
 				<br>
 				<br>
 				<?php if(isset($_SESSION['usuario'])) { 
-					if($_SESSION['tipo'] === "Administrador") { ?>
+					if($_SESSION['tipo'] === "Administrador" ||
+						$_SESSION['tipo'] === "Empleado") { ?>
 				
 					<a href="pago_agregar" class="waves-effect blue lighten-2 btn"><i class="material-icons left">input</i>Realizar pago</a>
 
@@ -64,7 +72,19 @@
 						<div class="modal-content">
 							<h4>Todos los pagos</h4>
 							<?php
-								$query = "SELECT * FROM pagos;";
+								$query = "SELECT 
+										pagos.folio,
+										pagos.fecha,
+										pagos.monto,
+										CONCAT(usuarios.nombres,' ',usuarios.ape_paterno,' ',usuarios.ape_materno) AS nombre,
+										casas.dueno,
+										casas.adeudo
+										FROM pagos
+										INNER JOIN usuarios 
+										ON usuarios.id = pagos.usuario_id
+										INNER JOIN casas
+										ON casas.id = pagos.casa_id
+										ORDER BY pagos.fecha DESC;";
 								$resultado = mysqli_query($enlace, $query);
 							?>
 							<table class="bordered highlight striped centered responsive-table">
@@ -72,8 +92,10 @@
 									<tr>
 										<th>FOLIO</th>
 										<th>FECHA</th>
-										<th>MONTO</th>
-										<th>ACCIONES</th>
+										<th>MONTO ABONADO</th>
+										<th>NOMBRE DE COBRADOR</th>
+										<th>ADEUDO CASA</th>
+										<th>DUEÑO CASA</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -82,10 +104,9 @@
 										<td><?php echo $row->folio ?>&nbsp;</td>
 										<td><?php echo $row->fecha ?>&nbsp;</td>
 										<td><?php echo $row->monto ?>&nbsp;</td>
-										<td>
-											<a href="casa_editar?id=<?= $row->folio ?>" class="btn orange darken-1" title="Editar casa">editar</a>
-											<button type="button" class="btn red" onclick="confirmacion('<?php echo $row->fecha; ?>', '<?php echo $row->monto; ?>', <?php echo $row->folio; ?> )" title="Eliminar casa">Borrar</button>
-										</td>
+										<td><?php echo $row->nombre ?>&nbsp;</td>
+										<td><?php echo $row->adeudo ?>&nbsp;</td>
+										<td><?php echo $row->dueno ?>&nbsp;</td>
 									</tr>
 								<?php } ?>
 								</tbody>
@@ -122,8 +143,10 @@
 									<tr>
 										<th>FOLIO</th>
 										<th>FECHA</th>
-										<th>MONTO</th>
-										<th>ACCIONES</th>
+										<th>MONTO ABONADO</th>
+										<th>NOMBRE DE COBRADOR</th>
+										<th>ADEUDO CASA</th>
+										<th>DUEÑO CASA</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -132,10 +155,9 @@
 										<td><?php echo $row->folio ?>&nbsp;</td>
 										<td><?php echo $row->fecha ?>&nbsp;</td>
 										<td><?php echo $row->monto ?>&nbsp;</td>
-										<td>
-											<a href="casa_editar?id=<?= $row->folio ?>" class="btn orange darken-1" title="Editar casa">Editar</a>
-											<button type="button" class="btn red" onclick="confirmacion('<?php echo $row->fecha; ?>', '<?php echo $row->monto; ?>', <?php echo $row->folio; ?> )" title="Eliminar casa">Borrar</button>
-										</td>
+										<td><?php echo $row->nombre ?>&nbsp;</td>
+										<td><?php echo $row->adeudo ?>&nbsp;</td>
+										<td><?php echo $row->dueno ?>&nbsp;</td>
 									</tr>
 								<?php } ?>
 								</tbody>
@@ -170,13 +192,6 @@
     </div><!-- CONTAINER -->
 
      <script>
-		function confirmacion(nomb, apee, idd) {
-			if(confirm("Realmente deseas eliminar la casa-> " + nomb + " con el adeudo-> " + apee + " ?"))
-			{
-				window.location.href="casa_eliminar?id=" + idd;
-			}
-		}
-
 		//<!--A CONTINUACION SCRIPT PARA INICIALIZAR ELMODAL-->
 		$(document).ready(function(){
 			// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
