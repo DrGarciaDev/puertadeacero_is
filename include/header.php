@@ -28,6 +28,7 @@
     <li><a href="ver_proveedores">Proveedores</a></li>
     <li><a href="ver_casas">Casas</a></li>
     <li><a href="ver_productos">Productos</a></li>
+    <li><a href="ver_pagos">Pagos</a></li>
   <?php } ?>
 </ul>
 <!--FINAL DEL BOTON QUE DESPLIEGA EL MENU-->
@@ -51,6 +52,7 @@
             <li><a href="ver_proveedores"><i class="material-icons left">search</i>Proveedores</a></li>
             <li><a href="ver_casas"><i class="material-icons left">search</i>Casas</a></li>
             <li><a href="ver_productos"><i class="material-icons left">search</i>Productos</a></li>
+            <li><a href="ver_pagos"><i class="material-icons left">search</i>Pagos</a></li>
           <?php } ?>
           <li><a href="salir"><i class="material-icons left">stop</i>Salir</a></li>
         </ul>

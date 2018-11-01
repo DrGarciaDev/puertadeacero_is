@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2018 a las 21:43:41
+-- Tiempo de generación: 31-10-2018 a las 18:10:09
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 7.0.13
 
@@ -14,6 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de datos: `puertadeacero_is`
@@ -37,8 +38,8 @@ CREATE TABLE `casas` (
 --
 
 INSERT INTO `casas` (`id`, `dueno`, `adeudo`, `usuario_id`) VALUES
-(3, 'PEPECHUGA', '400.00', 1),
-(4, 'CROSTY', '1000.00', 2);
+(3, 'PEPECHUGA', '300.00', 1),
+(4, 'CROSTY', '500.00', 2);
 
 -- --------------------------------------------------------
 
@@ -53,6 +54,18 @@ CREATE TABLE `pagos` (
   `usuario_id` int(11) NOT NULL,
   `casa_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `pagos`
+--
+
+INSERT INTO `pagos` (`folio`, `fecha`, `monto`, `usuario_id`, `casa_id`) VALUES
+(1, '2018-10-31 17:38:20', '200.00', 1, 3),
+(2, '2018-10-31 09:18:16', '100.00', 1, 3),
+(3, '2018-10-31 17:52:32', '100.00', 1, 4),
+(4, '2018-10-31 18:01:48', '50.00', 1, 4),
+(5, '2018-10-31 18:05:45', '50.00', 1, 4),
+(6, '2018-10-31 18:09:39', '300.00', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -177,7 +190,7 @@ ALTER TABLE `casas`
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `folio` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `folio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
