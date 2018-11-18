@@ -8,7 +8,9 @@ $enlace = mysqli_connect($config['host'],$config['username'],$config['password']
 //Si la conexión falla, aparece el error
 
 if($enlace === false) {
-	echo 'Ha habido un error <br>'.mysqli_connect_error();
+	echo 'Ha habido un error: <br>'.mysqli_connect_error();
+    //exit();
+	die;
 } else {
 	mysqli_set_charset($enlace, "utf8");
 	//echo 'Conectado a la base de datos';
